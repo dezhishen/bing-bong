@@ -40,12 +40,12 @@ func (q *QQ) Init() {
 		webSocket   = q.Conf["websocket"].(string)
 		accessToken = q.Conf["accesstoken"].(string)
 	)
-	zero.Run(zero.Config{
+	zero.Run(&zero.Config{
 		CommandPrefix: "/",
 		Driver: []zero.Driver{
 			driver.NewWebSocketClient(webSocket, accessToken),
 		},
-		SelfID: account,
+		// SelfID: account,
 	})
 	accountNum, err := strconv.ParseInt(account, 10, 64)
 	if err != nil {
@@ -141,7 +141,7 @@ func (q *QQ) HandleEvent(mm *message.Manager) {
 					recv, cancel := next.Repeat()
 					time.AfterFunc(10*time.Second, cancel)
 					for event := range recv {
-						numStr := event.Message.ExtractPlainText()
+						numStr := event.MessageString()
 						if num, err := strconv.Atoi(numStr); err != nil {
 							ctx.Send("请确保输入数字！")
 						} else {
