@@ -9,6 +9,14 @@ mysql:
   dbUser: "root" # 数据库账号
   dbPass: "root" # 数据库密码
   dbName: "bingbong" # 数据库名
+commands: # 命令别名
+  subscribe: # 订阅
+    - "sub"
+  unsubscribe: # 取消订阅
+    - "unsub"
+  searchSubscription: # 查询订阅
+    - "searchSub"
+messageTemplate: "《%s》更新了《%s》\n链接：%s" # 消息模板
 sqlite:
   path: "./sqlite.db" # 数据库位置
 log: "bing-bong.log" # 机器人日志文件名

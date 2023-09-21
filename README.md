@@ -24,17 +24,27 @@ qq:
   account: "123456" # QQ账号
   webSocket: "ws://127.0.0.1:6700/" #cq-http的正向ws地址
   accessToken: "123456" # cq-http的token
-dbType: "sqlite" # 使用的数据库类型
+dbType: "sqlite" # 数据库类型
 mysql:
   dbAddress: "localhost:3306" # 数据库链接
   dbUser: "root" # 数据库账号
   dbPass: "root" # 数据库密码
   dbName: "bingbong" # 数据库名
+commands: # 命令别名
+  subscribe: # 订阅
+    - "sub"
+  unsubscribe: # 取消订阅
+    - "unsub"
+  searchSubscription: # 查询订阅
+    - "searchSub"
+messageTemplate: "《%s》更新了《%s》\n链接：%s" # 消息模板
 sqlite:
   path: "./sqlite.db" # 数据库位置
-proxy: "" # 请求rss地址时使用的 http 代理（例：http://localhost:7890，留空表示无代理）
+log: "bing-bong.log" # 机器人日志文件名
+proxy: "" # 请求rss地址时使用的代理（例：http://localhost:7890，留空表示无代理）
 checkTime: 5 # 检测rss订阅的时间间隔（单位分钟）
 checkRange: 5 # 检测rss订阅的最大条数（程序会检测rss地址的前min(checkRange,len(feeds))条消息）
+
 ```
 
 ## 运行
