@@ -31,7 +31,7 @@ jobs:
         with:
           push: true
           context: .
-          file: ./dockerfile
+          file: ./Dockerfile
           build-args: |
             VERSION=${{ env.APP_VERSION }}
           platforms:  |
