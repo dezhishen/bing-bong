@@ -75,7 +75,7 @@ func (q *QQ) HandleEvent(mm *message.Manager) {
 	var functions []command
 	functions = []command{
 		{
-			[]string{"订阅", "subscribe"},
+			getSubscribeCommands(),
 			func(ctx *zero.Ctx) {
 				var cmd extension.CommandModel
 				err := ctx.Parse(&cmd)
@@ -123,7 +123,7 @@ func (q *QQ) HandleEvent(mm *message.Manager) {
 			"使用网站 RSS 作为参数以订阅网站更新",
 		},
 		{
-			[]string{"取消订阅", "unsubscribe"},
+			getUnsubscribeCommands(),
 			func(ctx *zero.Ctx) {
 				isGroup, userID := getCtxInfo(ctx)
 				feeds, err := model.QueryFeed(userID, isGroup)
@@ -165,7 +165,7 @@ func (q *QQ) HandleEvent(mm *message.Manager) {
 			"交互式删除当前的网站订阅",
 		},
 		{
-			[]string{"查询订阅", "searchSubscription"},
+			getsearchSubscriptionCommands(),
 			func(ctx *zero.Ctx) {
 				isGroup, userID := getCtxInfo(ctx)
 				feeds, err := model.QueryFeed(userID, isGroup)

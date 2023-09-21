@@ -4,11 +4,18 @@ import (
 	"fmt"
 
 	"github.com/mmcdole/gofeed"
+	"github.com/spf13/viper"
 )
 
-// 消息模板
-const tamplate = "您好，您关注的站点《%s》更新了新文章《%s》，快去看看吧！~\n链接：%s"
+// getTemplate 消息模板
+func getTemplate() string {
+	result := viper.GetString("messageTemplate")
+	if result != "" {
+		return result
+	}
+	return "《%s》更新了《%s》\n链接：%s"
+}
 
 func BuildMessage(rssTitle string, item *gofeed.Item) string {
-	return fmt.Sprintf(tamplate, rssTitle, item.Title, item.Link)
+	return fmt.Sprintf(getTemplate(), rssTitle, item.Title, item.Link)
 }
