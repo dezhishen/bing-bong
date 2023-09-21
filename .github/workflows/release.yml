@@ -3,7 +3,8 @@ on:
   push:
     tags:
       - "v*"
-
+env:
+  APP_NAME: bing-bong
 jobs:
   release:
     name: publish releases
